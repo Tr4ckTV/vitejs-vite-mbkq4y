@@ -3,6 +3,19 @@ import './style.scss';
 import { data } from './data';
 import { nav } from './nav';
 
+data.sort((a, b) => {
+  const prenomA = a.prenom;
+  const prenomB = b.prenom;
+
+  if (true) 
+  {
+    return prenomB.localeCompare(prenomA);
+  } 
+  else
+  {}
+});
+
+
 const listePersonnes = () => {
   let html = '';
   for (let i = 0; i < data.length; i++) {
@@ -32,6 +45,6 @@ document.querySelector('#app').innerHTML = `
   </main>
 
   <footer>
-
+    <div>yo</div>
   </footer>
 `;
