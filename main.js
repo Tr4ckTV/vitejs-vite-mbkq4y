@@ -5,9 +5,6 @@ import { nav } from './nav';
 
 import Fuse from 'fuse.js'
 
-//barre de recherche
-const Fuse = require('fuse.js')
-
 const options = 
 {
   keys: ['nom', 'prenom'],
