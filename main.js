@@ -5,21 +5,18 @@ import { nav } from './nav';
 
 import Fuse from 'fuse.js'
 
-const options = 
-{
-  keys: ['nom', 'prenom'],
-};
+const fuseExact = new Fuse(data, {
+  keys: ['prenom', 'nom'],
+  threshold: 0.2,
+  minMatchCharLength: 3,
+  useExtendedSearch: true,
+});
 
-const search = (term) => {
-  const result = Fuse.search(term);
-  return result.map(item => item.item);
-};
-
-// Utilisation de Fuse.js dans la barre de recherche
-searchInput.addEventListener('input', () => {
-  const searchTerm = searchInput.value;
-  const filteredData = search(searchTerm);
-  // Reste du code pour mettre à jour la liste de personnes
+const fuseStartsWith = new Fuse(data, {
+  keys: ['prenom', 'nom'],
+  threshold: 0.1,
+  minMatchCharLength: 1,
+  useExtendedSearch: true,
 });
 
 //triage 
@@ -60,6 +57,12 @@ document.querySelector('#app').innerHTML = `
 
     <div class="container-fluid my-4">
       <div class="d-flex gap-3 flex-wrap justify-content-center">
+        <input type="text" id="searchInput" placeholder="Rechercher...">
+      </div>
+    </div>
+
+    <div class="container-fluid my-4">
+      <div class="d-flex gap-3 flex-wrap justify-content-center">
         ${listePersonnes()}
       </div>
     </div>
@@ -69,3 +72,25 @@ document.querySelector('#app').innerHTML = `
     <div>yo</div>
   </footer>
 `;
+
+
+function handleSearch() 
+{
+  const searchText = searchInput.value;
+
+  if (searchText === '') 
+  {
+    document.querySelector('#personList').innerHTML = listePersonnes();
+  }
+  else 
+  {
+    const resultExact = fuseExact.search(searchText);
+    const resultStartsWith = fuseStartsWith.search(searchText);
+    const combinedResults = [...resultExact, ...resultStartsWith];
+    const uniqueResults = Array.from(new Set(combinedResults.map((item) => item.item.id)));
+    const filteredData = uniqueResults.map((id) => data.find((item) => item.id === id));
+    document.querySelector('#personList').innerHTML = listePersonnes(filteredData);
+  }
+}
+
+searchInput.addEventListener('input', handleSearch);
