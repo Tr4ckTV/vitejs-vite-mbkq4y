@@ -5,6 +5,26 @@ import { nav } from './nav';
 
 import Fuse from 'fuse.js'
 
+//barre de recherche
+const Fuse = require('fuse.js')
+
+const options = 
+{
+  keys: ['nom', 'prenom'],
+};
+
+const search = (term) => {
+  const result = Fuse.search(term);
+  return result.map(item => item.item);
+};
+
+// Utilisation de Fuse.js dans la barre de recherche
+searchInput.addEventListener('input', () => {
+  const searchTerm = searchInput.value;
+  const filteredData = search(searchTerm);
+  // Reste du code pour mettre à jour la liste de personnes
+});
+
 //triage 
 data.sort((a, b) => {
   const prenomA = a.prenom;
@@ -18,6 +38,7 @@ data.sort((a, b) => {
   {}
 });
 
+//reste
 
 const listePersonnes = () => {
   let html = '';
