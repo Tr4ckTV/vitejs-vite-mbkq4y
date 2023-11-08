@@ -62,7 +62,7 @@ document.querySelector('#app').innerHTML = `
     </div>
 
     <div class="container-fluid my-4">
-      <div class="d-flex gap-3 flex-wrap justify-content-center">
+      <div class="d-flex gap-3 flex-wrap justify-content-center" id="personList">
         ${listePersonnes()}
       </div>
     </div>
@@ -89,7 +89,7 @@ function handleSearch()
     const combinedResults = [...resultExact, ...resultStartsWith];
     const uniqueResults = Array.from(new Set(combinedResults.map((item) => item.item.id)));
     const filteredData = uniqueResults.map((id) => data.find((item) => item.id === id));
-    document.querySelector('#personList').innerHTML = listePersonnes(filteredData);
+    document.querySelector('#personList').innerHTML = listePersonnes(filteredData.Alice);
   }
 }
 
