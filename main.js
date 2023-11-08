@@ -3,6 +3,9 @@ import './style.scss';
 import { data } from './data';
 import { nav } from './nav';
 
+import Fuse from 'fuse.js'
+
+//triage 
 data.sort((a, b) => {
   const prenomA = a.prenom;
   const prenomB = b.prenom;
