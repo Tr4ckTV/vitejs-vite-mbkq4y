@@ -89,7 +89,7 @@ function handleSearch()
     const combinedResults = [...resultExact, ...resultStartsWith];
     const uniqueResults = Array.from(new Set(combinedResults.map((item) => item.item.id)));
     const filteredData = uniqueResults.map((id) => data.find((item) => item.id === id));
-    document.querySelector('#personList').innerHTML = listePersonnes(filteredData.Alice);
+    document.querySelector('#personList').innerHTML = listePersonnes(filteredData);
   }
 }
 
