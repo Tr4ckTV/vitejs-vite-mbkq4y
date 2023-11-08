@@ -12,10 +12,6 @@ const listePersonnes = () => {
         <img src="${personne.avatar}" class="card-img-top" alt="avatar de ${personne.prenom} ${personne.nom}">
         <div class="card-body">
           <h5 class="card-title">${personne.prenom} ${personne.nom}</h5>
-          <h6 class="card-title">${personne.date_de_naissance}</h6>
-          <h6 class="card-title">${personne.numero_de_telephone}</h6>
-          <h6 class="card-title">${personne.adresse_email}</h6>
-          <h6 class="card-title">${personne.description}</h6>
         </div>
       </a>
     `;
@@ -34,4 +30,8 @@ document.querySelector('#app').innerHTML = `
       </div>
     </div>
   </main>
+
+  <footer>
+
+  </footer>
 `;
